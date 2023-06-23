@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tilasproject.mapper.EmployeeMapper">
+
+<select id="queryEmployee" resultType="com.example.tilasproject.pojo.Employee">
+    SELECT * FROM emp WHERE 1=1
+        <if test="name != null and name != ''">
+            AND name like '%' #{name} '%'
+        </if>
+        <if test="gender != null">
+            AND gender = #{gender}
+        </if>
+        <if test="begin != null">
+            AND begin &gt;= #{begin}
+        </if>
+        <if test="end != null">
+            AND end &lt;= #{end}
+        </if>
+        ORDER BY id DESC
+</select>
+</mapper>
